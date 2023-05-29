@@ -10,10 +10,7 @@ import {
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.json({
-    statusCode: 200,
-    msg: "Api Rodando",
-  });
+  res.end("<h1>API is working</h1>");
 });
 
 router.get("/words", selectWords);
