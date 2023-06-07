@@ -6,11 +6,11 @@ export async function selectWords(req, res) {
   });
 }
 
-export async function selectPessoa(req, res) {
+export async function selectWord(req, res) {
   let id = req.params.id;
   openDb().then((db) => {
-    db.get("SELECT * FROM test WHERE id=?", [id]).then((pessoa) =>
-      res.json(pessoa)
+    db.get("SELECT * FROM Words WHERE id=?", [id]).then((word) =>
+      res.json(word)
     );
   });
 }
@@ -49,26 +49,26 @@ export async function insertWord(req, res) {
   });
 }
 
-export async function updatePessoa(req, res) {
-  let pessoa = req.body;
-  openDb().then((db) => {
-    db.run("UPDATE Pessoa SET nome=?, idade=? WHERE id=?", [
-      pessoa.nome,
-      pessoa.idade,
-      pessoa.id,
-    ]);
-  });
-  res.json({
-    statusCode: 200,
-  });
-}
+// export async function updatePessoa(req, res) {
+//   let pessoa = req.body;
+//   openDb().then((db) => {
+//     db.run("UPDATE Pessoa SET nome=?, idade=? WHERE id=?", [
+//       pessoa.nome,
+//       pessoa.idade,
+//       pessoa.id,
+//     ]);
+//   });
+//   res.json({
+//     statusCode: 200,
+//   });
+// }
 
-export async function deletePessoa(req, res) {
-  let id = req.body.id;
-  openDb().then((db) => {
-    db.get("DELETE FROM Pessoa WHERE id=?", [id]).then((res) => res);
-  });
-  res.json({
-    statusCode: 200,
-  });
-}
+// export async function deletePessoa(req, res) {
+//   let id = req.body.id;
+//   openDb().then((db) => {
+//     db.get("DELETE FROM Pessoa WHERE id=?", [id]).then((res) => res);
+//   });
+//   res.json({
+//     statusCode: 200,
+//   });
+// }
