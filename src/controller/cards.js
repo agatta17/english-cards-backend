@@ -41,6 +41,7 @@ export async function insertWord(req, res) {
       statusCode: 200,
     });
   } catch (error) {
+    console.log("error >> ", error);
     res.json(error);
   } finally {
     await client.close();
