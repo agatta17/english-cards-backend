@@ -8,12 +8,12 @@ const database = client.db("english_words");
 export async function selectWords(req, res) {
   try {
     const words = database.collection("words");
-    // await words.insertOne(req.body);
     const cursor = words.find();
     const data = await cursor.toArray();
 
     res.json(data);
   } catch (error) {
+    console.log("error >> ", error);
     res.json(error);
   } finally {
     await client.close();
