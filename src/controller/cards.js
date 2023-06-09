@@ -7,6 +7,7 @@ const database = client.db("english_words");
 
 export async function selectWords(req, res) {
   try {
+    await client.connect();
     const words = database.collection("words");
     const cursor = words.find();
     const data = await cursor.toArray();
@@ -34,6 +35,7 @@ export async function insertWord(req, res) {
   // } = req.body;
 
   try {
+    await client.connect();
     const words = database.collection("words");
     await words.insertOne(req.body);
 
