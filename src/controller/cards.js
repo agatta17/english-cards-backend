@@ -1,52 +1,50 @@
-import { openDb } from "../configDB.js";
+import { MongoClient } from "mongodb";
+
+const uri =
+  "mongodb+srv://adephimova:UuFFFuD3EUj1csSm@cluster0.bf2teql.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri);
+const database = client.db("english_words");
 
 export async function selectWords(req, res) {
-  openDb().then((db) => {
-    db.all("SELECT * FROM Words").then((words) => res.json(words));
-  });
-}
+  try {
+    const words = database.collection("words");
+    // await words.insertOne(req.body);
+    const cursor = words.find();
+    const data = await cursor.toArray();
 
-export async function selectWord(req, res) {
-  let id = req.params.id;
-  openDb().then((db) => {
-    db.get("SELECT * FROM Words WHERE id=?", [id]).then((word) =>
-      res.json(word)
-    );
-  });
+    res.json(data);
+  } catch (error) {
+    res.json(error);
+  } finally {
+    await client.close();
+  }
 }
 
 export async function insertWord(req, res) {
-  let {
-    id,
-    association,
-    done,
-    englishExample,
-    englishWord,
-    groupId,
-    picture,
-    russianExample,
-    russianWord,
-  } = req.body;
-  openDb().then((db) => {
-    russianExample;
-    db.run(
-      "INSERT INTO Words (id, association, done, englishExample, englishWord, groupId, picture, russianExample, russianWord) VALUES (?,?,?,?,?,?,?,?,?)",
-      [
-        id,
-        association,
-        done,
-        englishExample,
-        englishWord,
-        groupId,
-        picture,
-        russianExample,
-        russianWord,
-      ]
-    );
-  });
-  res.json({
-    statusCode: 200,
-  });
+  // let {
+  //   id,
+  //   association,
+  //   done,
+  //   englishExample,
+  //   englishWord,
+  //   groupId,
+  //   picture,
+  //   russianExample,
+  //   russianWord,
+  // } = req.body;
+
+  try {
+    const words = database.collection("words");
+    await words.insertOne(req.body);
+
+    res.json({
+      statusCode: 200,
+    });
+  } catch (error) {
+    res.json(error);
+  } finally {
+    await client.close();
+  }
 }
 
 // export async function updatePessoa(req, res) {

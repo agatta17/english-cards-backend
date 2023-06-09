@@ -6,4 +6,6 @@ app.use(express.json());
 import router from "./routes.js";
 app.use(router);
 
-app.listen(80, () => console.log("Server has been started..."));
+app.listen(80, () => {
+  console.log("Server has been started...");
+});

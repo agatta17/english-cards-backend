@@ -1,7 +1,6 @@
 import { Router } from "express";
 import {
   selectWords,
-  selectWord,
   insertWord,
   // updatePessoa,
   // deletePessoa,
@@ -14,7 +13,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/words", selectWords);
-router.get("/word/:id", selectWord);
+// router.get("/word/:id", selectWord);
 router.post("/word", insertWord);
 // router.put("/pessoa", updatePessoa);
 // router.delete("/pessoa", deletePessoa);
