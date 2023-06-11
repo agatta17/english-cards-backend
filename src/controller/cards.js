@@ -30,7 +30,7 @@ export async function insertWords(req, res) {
     await client.connect();
     const words = database.collection("words");
 
-    words.insertMany([
+    await words.insertMany([
       {
         id: 42885287,
         englishWord: "beat",
