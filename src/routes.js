@@ -1,12 +1,6 @@
 import { Router } from "express";
-import cors from "cors";
+
 import { getWords, insertWords, insertGroups } from "./controller/cards.js";
-
-const corsOptions = {
-  origin: "http://localhost:8080",
-};
-
-app.use(cors(corsOptions));
 
 const router = Router();
 
