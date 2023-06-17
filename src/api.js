@@ -6,7 +6,7 @@ app.use(express.json());
 
 var allowedOrigins = [
   "http://localhost:8080",
-  "https://english-cards-zeta.vercel.app/",
+  "https://english-cards-zeta.vercel.app",
 ];
 app.use(
   cors({
