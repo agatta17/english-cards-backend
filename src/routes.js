@@ -1,6 +1,11 @@
 import { Router } from "express";
 
-import { getWords, insertWords, insertGroups } from "./controller/cards.js";
+import {
+  getWords,
+  getGroups,
+  insertWords,
+  insertGroup,
+} from "./controller/cards.js";
 
 const router = Router();
 
@@ -9,8 +14,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/words", getWords);
+router.get("/groups", getGroups);
 router.post("/word", insertWords);
-router.post("/groups", insertGroups);
+router.post("/group", insertGroup);
 // router.put("/pessoa", updatePessoa);
 // router.delete("/pessoa", deletePessoa);
 
