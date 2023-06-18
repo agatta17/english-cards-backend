@@ -5,6 +5,7 @@ import {
   getGroups,
   insertWords,
   insertGroup,
+  getDataFromAi,
 } from "./controller/cards.js";
 
 const router = Router();
@@ -17,6 +18,7 @@ router.get("/words", getWords);
 router.get("/groups", getGroups);
 router.post("/word", insertWords);
 router.post("/group", insertGroup);
+router.post("/ai", getDataFromAi);
 // router.put("/pessoa", updatePessoa);
 // router.delete("/pessoa", deletePessoa);
 
