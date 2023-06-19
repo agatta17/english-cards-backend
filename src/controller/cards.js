@@ -81,7 +81,7 @@ export async function insertGroup(req, res) {
 }
 
 export async function getDataFromAi(req, res) {
-  const wordList = "go, winter, boring";
+  const wordList = req.body.word_list;
   const content = `Составь из списка слов json массив объектов с полями englishWord, russianWord, englishExample, russianExample. Где englishWord - это анлийское слово, russianWord -  перевод на русский (если переводов несколько, то нужно вывести основные через запятую), englishExample - пример использования в предложении,  russianExample - перевод примера на русский. Пришли только json без комментариев и без символов. Вот список: ${wordList}.`;
   try {
     const completion = await openai.createChatCompletion({
