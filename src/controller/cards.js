@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
