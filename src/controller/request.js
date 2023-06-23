@@ -1,4 +1,4 @@
-import { database } from "../config.js";
+import { database, client } from "../config.js";
 
 export async function getWords(req, res) {
   try {

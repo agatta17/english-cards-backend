@@ -10,5 +10,5 @@ const configuration = new Configuration({
 export const openai = new OpenAIApi(configuration);
 
 const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
+export const client = new MongoClient(uri);
 export const database = client.db("english_words");

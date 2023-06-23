@@ -1,8 +1,8 @@
-import { openai, database } from "../config.js";
+import { openai, database, client } from "../config.js";
 
 export async function generateWordsByList(req, res) {
   const { wordList, groupId } = req.body;
-  const content = `Составь из списка слов json массив объектов с полями englishWord, russianWord, englishExample, russianExample. Где englishWord - это анлийское слово, russianWord -  перевод на русский (если переводов несколько, то нужно вывести основные через запятую), englishExample - пример использования в предложении,  russianExample - перевод примера на русский. Пришли только json без комментариев и без символов. Вот список: ${wordList}.`;
+  const content = `Составь из списка слов json массив объектов с полями englishWord, russianWord, englishExample, russianExample. Где englishWord - это анлийское слово, russianWord -  перевод на русский (если переводов несколько, то нужно вывести основные через запятую), englishExample - пример использования в предложении,  russianExample - перевод примера на русский. В примерах выдели само слово тегом <em></em>. Пришли только json без комментариев и без символов. Вот список: ${wordList}.`;
   try {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
