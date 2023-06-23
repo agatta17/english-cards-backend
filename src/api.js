@@ -2,9 +2,10 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
+
 app.use(express.json());
 
-var allowedOrigins = [
+const allowedOrigins = [
   "http://localhost:8080",
   "https://english-cards-zeta.vercel.app",
 ];
@@ -13,7 +14,7 @@ app.use(
     origin: function (origin, callback) {
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
-        var msg =
+        const msg =
           "The CORS policy for this site does not " +
           "allow access from the specified Origin.";
         return callback(new Error(msg), false);
