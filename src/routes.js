@@ -2,7 +2,11 @@ import { Router } from "express";
 
 import { getWords, getGroups } from "./controller/request.js";
 import { insertWords, insertGroup } from "./controller/recording.js";
-import { generateWordsByList } from "./controller/generation.js";
+import {
+  generateWordsByList,
+  generateWordsByTopic,
+} from "./controller/generation.js";
+import { deleteWord } from "./controller/editing.js";
 
 const router = Router();
 
@@ -17,8 +21,9 @@ router.post("/words", insertWords);
 router.post("/group", insertGroup);
 
 router.post("/generate-by-list", generateWordsByList);
+router.post("/generate-by-topic", generateWordsByTopic);
 
 // router.put("/word", updateWord);
-// router.delete("/word", deleteWord);
+router.delete("/word", deleteWord);
 
 export default router;
