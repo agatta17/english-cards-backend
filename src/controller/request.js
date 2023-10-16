@@ -20,6 +20,24 @@ export async function getWords(req, res) {
   }
 }
 
+export async function getRandomWords(req, res) {
+  try {
+    await client.connect();
+    const words = database.collection("words");
+
+    const count = Number(req.query.count);
+
+    const data = await words
+      .aggregate([{ $sample: { size: count } }])
+      .toArray();
+    res.json(data);
+  } catch (error) {
+    res.status(500).send(error);
+  } finally {
+    await client.close();
+  }
+}
+
 export async function getGroups(req, res) {
   try {
     await client.connect();

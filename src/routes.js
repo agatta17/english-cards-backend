@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { getWords, getGroups } from "./controller/request.js";
+import { getWords, getRandomWords, getGroups } from "./controller/request.js";
 import {
   insertWords,
   insertGroup,
@@ -15,6 +15,7 @@ router.get("/", (req, res) => {
 });
 
 router.get("/words", getWords);
+router.get("/random-words", getRandomWords);
 router.get("/groups", getGroups);
 
 router.post("/words", insertWords);
