@@ -6,7 +6,12 @@ import {
   insertGroup,
   insertWord,
 } from "./controller/recording.js";
-import { deleteWord, updateWord } from "./controller/editing.js";
+import {
+  deleteWord,
+  updateWord,
+  deleteGroup,
+  updateGroup,
+} from "./controller/editing.js";
 
 const router = Router();
 
@@ -23,6 +28,8 @@ router.post("/group", insertGroup);
 router.post("/word", insertWord);
 
 router.put("/word", updateWord);
+router.put("/group", updateGroup);
 router.delete("/word", deleteWord);
+router.delete("/group", deleteGroup);
 
 export default router;
