@@ -1,6 +1,10 @@
 import { Router } from "express";
 
-import { commonMiddleware, getGroupsMiddleware } from "./middleware.js";
+import {
+  commonMiddleware,
+  getWordsMiddleware,
+  getGroupsMiddleware,
+} from "./middleware.js";
 
 import { login, register } from "./controller/authorization.js";
 import { getWords, getRandomWords, getGroups } from "./controller/request.js";
@@ -25,7 +29,7 @@ router.get("/", (req, res) => {
 router.post("/login", login);
 router.post("/register", register);
 
-router.get("/words", getWords);
+router.get("/words", getWordsMiddleware, getWords);
 router.get("/random-words", commonMiddleware, getRandomWords);
 router.get("/groups", getGroupsMiddleware, getGroups);
 

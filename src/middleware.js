@@ -31,3 +31,13 @@ export function commonMiddleware(req, res, next) {
     next();
   });
 }
+
+export function getWordsMiddleware(req, res, next) {
+  const token = req.headers.authorization;
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (decoded?.username) req.username = decoded.username;
+
+    next();
+  });
+}

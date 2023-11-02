@@ -2,9 +2,6 @@ import { database, client } from "../config.js";
 
 export async function getWords(req, res) {
   try {
-    await client.connect();
-    const words = database.collection("words");
-
     const groupId = Number(req.query.group_id);
 
     if (!groupId)
@@ -12,9 +9,19 @@ export async function getWords(req, res) {
         .status(500)
         .json({ error: "Не выбрана группа для получения слов" });
 
+    await client.connect();
+
+    const words = database.collection("words");
     const data = await words.find({ groupId }).toArray();
 
-    res.json(data);
+    const groups = database.collection("groups");
+    const groupData = await groups.findOne({ id: groupId });
+    const owner = groupData?.user || "unknown";
+
+    const response =
+      owner === req.username ? { words: data } : { words: data, owner };
+
+    res.json(response);
   } catch (error) {
     res.status(500).send(error);
   } finally {
