@@ -7,10 +7,12 @@ export async function getWords(req, res) {
 
     const groupId = Number(req.query.group_id);
 
-    const params = {};
-    if (groupId) params.groupId = groupId;
+    if (!groupId)
+      return res
+        .status(500)
+        .json({ error: "Не выбрана группа для получения слов" });
 
-    const data = await words.find(params).toArray();
+    const data = await words.find({ groupId }).toArray();
 
     res.json(data);
   } catch (error) {
@@ -43,9 +45,9 @@ export async function getGroups(req, res) {
     await client.connect();
     const groups = database.collection("groups");
 
-    const data = await groups.find().toArray();
+    const data = await groups.find({ user: req.username }).toArray();
 
-    res.json(data);
+    res.json({ username: req.username, groups: data });
   } catch (error) {
     res.status(500).send(error);
   } finally {

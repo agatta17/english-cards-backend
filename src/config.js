@@ -6,3 +6,5 @@ dotenv.config();
 const uri = process.env.MONGODB_URI;
 export const client = new MongoClient(uri);
 export const database = client.db("english_words");
+
+export const JWT_SECRET = process.env.JWT_SECRET;
