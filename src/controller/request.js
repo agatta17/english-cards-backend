@@ -16,7 +16,7 @@ export async function getWords(req, res) {
 
     const groups = database.collection("groups");
     const groupData = await groups.findOne({ id: groupId });
-    const owner = groupData?.user || "unknown";
+    const owner = groupData?.user || "unknown user";
 
     const response =
       owner === req.username ? { words: data } : { words: data, owner };
