@@ -23,7 +23,7 @@ export async function login(req, res) {
 
       if (passwordMatch) {
         const token = jwt.sign({ username: req.body.username }, JWT_SECRET, {
-          expiresIn: "1h",
+          expiresIn: "24h",
         });
         res.json({ token });
       } else {
@@ -58,7 +58,7 @@ export async function register(req, res) {
       });
 
       const token = jwt.sign({ username: req.body.username }, JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "24h",
       });
       res.json({ token });
     }
