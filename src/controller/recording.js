@@ -39,10 +39,11 @@ export async function insertGroup(req, res) {
     await client.connect();
     const words = database.collection("groups");
 
-    await words.insertOne(req.body.group);
+    const { insertedId } = await words.insertOne(req.body.group);
 
     res.json({
       statusCode: 200,
+      insertedId,
     });
   } catch (error) {
     res.status(500).send(error);
